@@ -1,7 +1,6 @@
-from typing import TYPE_CHECKING, Callable
+from typing import TYPE_CHECKING
 
 from config import Config
-
 from utils.message import Message, MessageLevel
 
 if TYPE_CHECKING:
@@ -9,7 +8,6 @@ if TYPE_CHECKING:
 
 
 class PlayerManager:
-
     def __init__(self):
         self._money = Config.INITIAL_MONEY
         self._dice_cost = Config.INITIAL_DICE_COST
@@ -20,8 +18,10 @@ class PlayerManager:
         self.in_game = False
 
     def get_output(self):
-        return Message(MessageLevel.info, f"Player money: {self.money}\n"
-                                          f"Player dice cost: {self._dice_cost}")
+        return Message(
+            MessageLevel.info,
+            f"Player money: {self.money}\n" f"Player dice cost: {self._dice_cost}",
+        )
 
     @property
     def money(self):
@@ -37,10 +37,11 @@ class PlayerManager:
 
     def try_buy_dice(self):
         if self._dice_cost > self._money:
-            self.output_buffer.append(Message(
-                MessageLevel.warning,
-                f"Not money spawn dice {self.money} / {self.dice_cost}"
-            ))
+            self.output_buffer.append(
+                Message(
+                    MessageLevel.warning, f"Not money spawn dice {self.money} / {self.dice_cost}"
+                )
+            )
             return False
 
         self._money -= self._dice_cost

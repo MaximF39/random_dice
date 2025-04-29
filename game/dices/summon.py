@@ -1,5 +1,6 @@
-from dices.dice import Dice
 import copy
+
+from dices.dice import Dice
 
 
 class SummonDice(Dice):
@@ -11,6 +12,5 @@ class SummonDice(Dice):
         self.attack_speed = 1.5
 
     def merge(self, other: "Dice"):
-        
         self.__class__ = copy.copy(other.__class__)
         self.__dict__ = copy.copy(other.__dict__)

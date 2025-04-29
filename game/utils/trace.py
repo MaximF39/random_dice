@@ -1,7 +1,8 @@
-from loguru import logger
 import inspect
-from datetime import datetime
 import os
+from datetime import datetime
+
+from loguru import logger
 
 # ANSI коды цветов
 COLOR_CYAN = "\033[96m"
@@ -47,4 +48,3 @@ def trace(msg=""):
     )
 
     logger.debug(log_msg)
-

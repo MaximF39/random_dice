@@ -1,7 +1,6 @@
 from command_game import CommandGame
-from dices.deck import Deck
 from dices.combo_dice import ComboDice
-from game import Game
+from dices.deck import Deck
 from dices.dices_manager import DicesManager
 from mobs.mobs_manager import MobsManager
 from player.player_manager import PlayerManager
@@ -10,16 +9,16 @@ from ui.input.input_cli import InputCLI
 from ui.output.output_cli import OutputCLI
 from ui.statistics import CollectStatic, GameStatistics
 
+from game import Game
 
-def test():
-    game = create_game()
-    print()
 
 def create_game():
-    game = Game(player_manager=PlayerManager(),
-                mobs_manager=MobsManager(),
-                dices_manager=DicesManager(Deck([ComboDice])))
-    return game
+    return Game(
+        player_manager=PlayerManager(),
+        mobs_manager=MobsManager(),
+        dices_manager=DicesManager(Deck([ComboDice])),
+    )
+
 
 def main():
     game = create_game()
@@ -36,6 +35,6 @@ def main():
     communicator.finish()
     input_cli.finish()
 
-if __name__ == '__main__':
-    # test()
+
+if __name__ == "__main__":
     main()

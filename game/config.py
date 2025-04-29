@@ -30,3 +30,7 @@ class Config:
 
     # DEBUG
     path_log = "logs/game.log"
+
+    not_money_for_spawn_dice = "Not money for spawn dice {money} / {cost}"
+    start_game = "Starting game... First mob will spawn in {wait_start} seconds."
+    finish_game = "Finish game max_mob_hp: {max_mob_hp}"

@@ -1,13 +1,9 @@
-import sys
 import threading
+from collections.abc import Callable
 from functools import partial
-from io import StringIO
-from typing import Callable
 
-import select
-
-from utils.logger import logger
 from command_game import CommandGame
+from utils.logger import logger
 
 
 class InputCLI:
@@ -29,9 +25,9 @@ class InputCLI:
     def _input(self):
         while self.t_input:
             try:
-                user_input = input("Commands:\n"
-                                   "1) Create dice. Arg: count\n"
-                                   "2) Merge dice. Arg: x y\n")
+                user_input = input(
+                    "Commands:\n" "1) Create dice. Arg: count\n" "2) Merge dice. Arg: x y\n"
+                )
                 split = user_input.split(" ", maxsplit=1)
                 if len(split) > 1:
                     command_id, args = split

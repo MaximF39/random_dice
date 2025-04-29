@@ -2,18 +2,17 @@ import random
 from typing import TYPE_CHECKING, Union
 
 from config import Config
+from prettytable import PrettyTable
 from utils.message import Message, MessageLevel
 from utils.singleton import Singleton
 from utils.trace import trace
-from prettytable import PrettyTable
 
 if TYPE_CHECKING:
-    from dices.dice import Dice
     from dices.deck import Deck
+    from dices.dice import Dice
 
 
 class DicesManager(Singleton):
-
     @classmethod
     def get_instance(cls):
         return cls._instance
@@ -21,7 +20,7 @@ class DicesManager(Singleton):
     def __init__(self, deck: "Deck", y=Config.BOARD_WIDTH, x=Config.BOARD_HEIGHT):
         self.map_x = x
         self.map_y = y
-        self.dices: list[list[Union["Dice", None]]] = [[None for _ in range(y)] for _ in range(x)]
+        self.dices: list[list["Dice" | None]] = [[None for _ in range(y)] for _ in range(x)]
         self.deck = deck
 
     def get_flat_dices(self) -> list[Union["Dice", None]]:
@@ -36,7 +35,7 @@ class DicesManager(Singleton):
         return damages
 
     def merge(self, x, y, x2, y2):
-        """ self.dices[y][x] -> self.dices[y2][x2]
+        """self.dices[y][x] -> self.dices[y2][x2]
         kill dice1, up dice2
         """
         try:
@@ -63,8 +62,12 @@ class DicesManager(Singleton):
                 self.dices[dice.y][dice.x] = None
 
     def get_free_positions(self):
-        free_positions = [(y, x) for y in range(len(self.dices)) for x in range(len(self.dices[y])) if
-                          self.dices[y][x] is None]
+        free_positions = [
+            (y, x)
+            for y in range(len(self.dices))
+            for x in range(len(self.dices[y]))
+            if self.dices[y][x] is None
+        ]
         return free_positions
 
     def create_dice(self):
@@ -88,10 +91,9 @@ class DicesManager(Singleton):
         table.header = False
 
         for row in self.dices:
-            table.add_row([
-                f"{dice.__class__.__name__[:3]}({dice.dot})" if dice else "_"
-                for dice in row
-            ])
+            table.add_row(
+                [f"{dice.__class__.__name__[:3]}({dice.dot})" if dice else "_" for dice in row]
+            )
 
         return Message(MessageLevel.info, f"\n{table}")
 

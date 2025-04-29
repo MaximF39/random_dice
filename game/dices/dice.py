@@ -13,9 +13,7 @@ class Dice:
         self.dot = dot
         self.attack_damage = 0
         self.attack_speed = 0
-        self.properties = {
-            "add_dot_merge": 1
-        }
+        self.properties = {"add_dot_merge": 1}
         self.is_destroy = False
 
     def set_position(self, x, y):
@@ -34,7 +32,6 @@ class Dice:
     def is_merged(self, other: "Dice"):
         trace(f"dice1.dot != dice2.dot | {self.dot} != {other.dot}")
         return self.dot == other.dot
-
 
     def merge(self, other: "Dice"):
         trace()

@@ -1,5 +1,6 @@
 # 
 
 ```bash
-python 
+pre-commit install
+pre-commit run --all-files
 ```

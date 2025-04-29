@@ -1,5 +1,4 @@
 import pytest
-
 from main import create_game
 
 

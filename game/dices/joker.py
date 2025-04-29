@@ -1,5 +1,6 @@
-from dices.dice import Dice
 import copy
+
+from dices.dice import Dice
 
 
 class JokerDice(Dice):

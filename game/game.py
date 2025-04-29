@@ -1,5 +1,6 @@
 import time
-from typing import Callable, TYPE_CHECKING
+from collections.abc import Callable
+from typing import TYPE_CHECKING
 
 from config import Config
 from utils.message import Message, MessageLevel
@@ -7,17 +8,18 @@ from utils.singleton import Singleton
 from utils.trace import trace
 
 if TYPE_CHECKING:
-    from player.player_manager import PlayerManager
     from dices.dices_manager import DicesManager
     from mobs.mobs_manager import MobsManager
+    from player.player_manager import PlayerManager
 
 
 class Game(Singleton):
-
-    def __init__(self,
-                 player_manager: "PlayerManager",
-                 mobs_manager: "MobsManager",
-                 dices_manager: "DicesManager"):
+    def __init__(
+        self,
+        player_manager: "PlayerManager",
+        mobs_manager: "MobsManager",
+        dices_manager: "DicesManager",
+    ):
         self.player_manager = player_manager
         self.dices_manager = dices_manager
         self.deck = self.dices_manager.deck
@@ -28,14 +30,19 @@ class Game(Singleton):
         self.history_player_calls: list[str] = []
 
     def handle_output(self):
-        self.output_buffer_calls += [self.dices_manager.get_output(),
-                                     self.mobs_manager.get_output(),
-                                     self.player_manager.get_output()]
+        self.output_buffer_calls += [
+            self.dices_manager.get_output(),
+            self.mobs_manager.get_output(),
+            self.player_manager.get_output(),
+        ]
 
     def game_loop(self):
         self.start_time = time.time()
-        self.output_buffer_calls.append(Message(MessageLevel.info,
-                                                f"Starting game... First mob will spawn in {Config.INITIAL_WAIT_START} seconds."))
+        self.output_buffer_calls.append(
+            Message(
+                MessageLevel.info, Config.start_game.format(wait_start=Config.INITIAL_WAIT_START)
+            )
+        )
         time.sleep(Config.INITIAL_WAIT_START)
         while self.player_manager.in_game:
             start_time = time.time()
@@ -63,8 +70,11 @@ class Game(Singleton):
             trace(f"Calculate game loop: {run_time_millisecond} milli Second")
             time.sleep(1 / Config.FPS - run_time_second)
 
-        self.output_buffer_calls.append(Message(MessageLevel.info,
-                                                f"Finish game max_mob_hp: {self.mobs_manager.mob_hp}"))
+        self.output_buffer_calls.append(
+            Message(
+                MessageLevel.info, Config.finish_game.format(mob_max_hp=self.mobs_manager.mob_hp)
+            )
+        )
 
     def do_commands(self, commands: list[Callable]):
         self.input_buffer_calls += commands

@@ -1,7 +1,7 @@
 import json
+import os
 import threading
 import time
-import os
 from abc import abstractmethod
 from dataclasses import dataclass
 from typing import Any
@@ -27,8 +27,7 @@ class InfoGame(Info):
 
 class Statistics:
     @abstractmethod
-    def get_statistics(self) -> Info:
-        ...
+    def get_statistics(self) -> Info: ...
 
 
 class CollectStatic:
@@ -38,7 +37,7 @@ class CollectStatic:
         self.run = True
         self.statistics = statistics
         self.path = "statistics/statistics"
-        while os.path.exists((new_path := f"{self.path}_{self.file_id}.json")):
+        while os.path.exists(new_path := f"{self.path}_{self.file_id}.json"):
             self.file_id += 1
         self.new_path = new_path
         log_dir = os.path.dirname(self.new_path)
@@ -65,7 +64,7 @@ class CollectStatic:
 
         # Читаем существующий JSON
         if os.path.exists(self.new_path):
-            with open(self.new_path, "r", encoding="utf-8") as f:
+            with open(self.new_path, encoding="utf-8") as f:
                 try:
                     existing_data = json.load(f)
                 except json.JSONDecodeError:
@@ -98,7 +97,7 @@ class GameStatistics(Statistics):
             dice_to_level=self.game.dices_manager.deck.id_to_dice,
             game_time=game_time,
             map=self.game.dices_manager.get_output().msg,
-            history_calls=self.game.history_player_calls
+            history_calls=self.game.history_player_calls,
         )
 
 
@@ -110,6 +109,6 @@ class TestStatistics(Statistics):
         return Info(id=self.id)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     stat = TestStatistics()
     CollectStatic(stat).collect()

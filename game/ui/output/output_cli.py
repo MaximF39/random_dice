@@ -4,7 +4,6 @@ from utils.message import Message
 
 
 class OutputCLI:
-
     def __init__(self, start=False):
         if start:
             self.start()
@@ -14,5 +13,4 @@ class OutputCLI:
             message.print()
         time.sleep(1)
 
-    def start(self):
-        ...
+    def start(self): ...

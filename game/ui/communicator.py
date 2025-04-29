@@ -1,9 +1,7 @@
 import threading
-import time
 
 
 class Communicator:
-
     def __init__(self, input_, output, game):
         self.input_ = input_
         self.output = output

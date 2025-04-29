@@ -5,7 +5,6 @@ class NutritionDice(Dice):
     level = 1
     add_property = False
 
-
     def __init__(self, x=None, y=None, dot=1):
         super().__init__(x, y, dot)
         self.attack_damage = 55

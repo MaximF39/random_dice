@@ -4,7 +4,6 @@ T = TypeVar("T")
 
 
 class OutputBuffer[T]:
-
     def __init__(self):
         self._output_buffer: list[T] = []
 
@@ -16,7 +15,6 @@ class OutputBuffer[T]:
 
 
 class InputBuffer[T]:
-
     def __init__(self):
         self._input_buffer: list[T] = []
 
@@ -24,5 +22,4 @@ class InputBuffer[T]:
         self._input_buffer += buffer
 
 
-class Buffer(OutputBuffer, InputBuffer):
-    ...
+class Buffer(OutputBuffer, InputBuffer): ...

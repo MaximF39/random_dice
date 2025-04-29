@@ -13,8 +13,10 @@ class MobsManager:
         self.total_mobs_destroy = 0
 
     def get_output(self):
-        return Message(MessageLevel.info, f"\nMobs ({len(self.mobs)}):\n" +
-                       (" ".join([f"[{int(mob.hp)}]" for mob in self.mobs])))
+        return Message(
+            MessageLevel.info,
+            f"\nMobs ({len(self.mobs)}):\n" + (" ".join([f"[{int(mob.hp)}]" for mob in self.mobs])),
+        )
 
     def update_mobs(self, damage_count):
         self.count_destroy = []
@@ -34,8 +36,6 @@ class MobsManager:
 
     def create_mobs(self):
         cls = self.__class__
-        self.mobs.append(Mob(hp=cls.mob_hp,
-                             money=cls.mob_cost))
+        self.mobs.append(Mob(hp=cls.mob_hp, money=cls.mob_cost))
         cls.mob_cost *= 1 + Config.COEF_MOB_MONEY
         cls.mob_hp *= 1 + Config.COEF_MOB_HP
-

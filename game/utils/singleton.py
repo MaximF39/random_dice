@@ -14,10 +14,10 @@ class Singleton:
         return cls._instance
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     class Test(Singleton):
         pass
-
 
     a = Test()
     b = Test()
