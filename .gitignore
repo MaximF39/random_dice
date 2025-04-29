@@ -1,4 +1,4 @@
 # created by virtualenv automatically
-./logs
-./game/statistics
+logs
+game/statistics
 .idea
