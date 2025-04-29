@@ -8,8 +8,8 @@ from utils.singleton import Singleton
 from utils.trace import trace
 
 if TYPE_CHECKING:
-    from dices.dices_manager import DicesManager
-    from mobs.mobs_manager import MobsManager
+    from core.dices.dices_manager import DicesManager
+    from core.mobs.mobs_manager import MobsManager
     from player.player_manager import PlayerManager
 
 

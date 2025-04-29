@@ -1,10 +1,9 @@
-import copy
-
-from dices.dice import Dice
+from core.dices.dice import Dice
 
 
-class SummonDice(Dice):
+class NutritionDice(Dice):
     level = 1
+    add_property = False
 
     def __init__(self, x=None, y=None, dot=1):
         super().__init__(x, y, dot)
@@ -12,5 +11,4 @@ class SummonDice(Dice):
         self.attack_speed = 1.5
 
     def merge(self, other: "Dice"):
-        self.__class__ = copy.copy(other.__class__)
-        self.__dict__ = copy.copy(other.__dict__)
+        super().merge(other)

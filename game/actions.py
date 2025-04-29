@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class CommandGame:
+class Actions:
     game: "Game"
 
     def __post_init__(self):

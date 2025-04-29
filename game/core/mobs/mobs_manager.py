@@ -1,5 +1,5 @@
 from config import Config
-from mobs.mob import Mob
+from core.mobs.mob import Mob
 from utils.message import Message, MessageLevel
 
 

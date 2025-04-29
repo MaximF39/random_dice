@@ -1,4 +1,4 @@
-from dices.dice import Dice
+from core.dices.dice import Dice
 from utils.my_math import sum_ap
 
 

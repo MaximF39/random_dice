@@ -1,5 +1,5 @@
 from config import Config
-from dices.dices_manager import DicesManager
+from core.dices.dices_manager import DicesManager
 from utils.trace import trace
 
 

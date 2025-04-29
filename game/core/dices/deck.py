@@ -1,4 +1,4 @@
-from dices.dice import Dice
+from core.dices.dice import Dice
 
 
 class Deck:

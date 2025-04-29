@@ -4,7 +4,7 @@ from config import Config
 from utils.message import Message, MessageLevel
 
 if TYPE_CHECKING:
-    from dices.dice import Dice
+    from core.dices.dice import Dice
 
 
 class PlayerManager:

@@ -8,8 +8,8 @@ from utils.singleton import Singleton
 from utils.trace import trace
 
 if TYPE_CHECKING:
-    from dices.deck import Deck
-    from dices.dice import Dice
+    from core.dices.deck import Deck
+    from core.dices.dice import Dice
 
 
 class DicesManager(Singleton):
