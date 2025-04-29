@@ -12,16 +12,17 @@ from ui.statistics import CollectStatic, GameStatistics
 
 
 def test():
-    game = Game(player_manager=PlayerManager(),
-                mobs_manager=MobsManager(),
-                dices_manager=DicesManager(Deck([ComboDice])))
+    game = create_game()
     print()
 
-
-def main():
+def create_game():
     game = Game(player_manager=PlayerManager(),
                 mobs_manager=MobsManager(),
                 dices_manager=DicesManager(Deck([ComboDice])))
+    return game
+
+def main():
+    game = create_game()
     command_game = CommandGame(game)
     input_cli = InputCLI(command_game, start=True)
     output_cli = OutputCLI(start=True)
